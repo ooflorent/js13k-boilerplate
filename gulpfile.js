@@ -30,7 +30,7 @@ program.on('--help', function(){
 
 program
   .usage('<task> [options]')
-  .option('-p, --prod', 'generate production assets')
+  .option('-P, --prod', 'generate production assets')
   .parse(process.argv);
 
 var prod = !!program.prod;
@@ -42,8 +42,12 @@ gulp.task('default', function() {
 gulp.task('build', ['build_source', 'build_index', 'build_styles']);
 
 gulp.task('build_source', function() {
-  return browserify()
-    .add('./src/main.js')
+  var bundler = browserify('./src/main', {debug: !prod});
+  if (prod) {
+    bundler.plugin(require('bundle-collapser/plugin'));
+  }
+
+  return bundler
     .bundle()
     .on('error', browserifyError)
     .pipe(source('build.js'))
