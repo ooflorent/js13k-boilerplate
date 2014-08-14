@@ -1,6 +1,8 @@
 var program = require('commander');
 var browserify = require('browserify');
 var chalk = require('chalk');
+var express = require('express');
+var path = require('path');
 var rimraf = require('rimraf');
 
 var gulp = require('gulp');
@@ -24,6 +26,7 @@ program.on('--help', function(){
   console.log('    build       build the game');
   console.log('    clean       delete generated files');
   console.log('    dist        generate archive');
+  console.log('    serve       launch development server');
   console.log('    watch       watch for file changes and rebuild automatically');
   console.log();
 });
@@ -35,10 +38,7 @@ program
 
 var prod = !!program.prod;
 
-gulp.task('default', function() {
-  program.help();
-});
-
+gulp.task('default', ['build']);
 gulp.task('build', ['build_source', 'build_index', 'build_styles']);
 
 gulp.task('build_source', function() {
@@ -102,6 +102,16 @@ gulp.task('watch', function() {
   gulp.watch('src/**/*.js', ['lint', 'build_source']);
   gulp.watch('src/styles.less', ['build_styles']);
   gulp.watch('src/index.html', ['build_index']);
+});
+
+gulp.task('serve', ['build'], function() {
+  var htdocs = path.resolve(__dirname, 'build');
+  var app = express();
+
+  app.use(express.static(htdocs));
+  app.listen(3000, function() {
+    gutil.log("Server started on '" + chalk.green('http://localhost:3000') + "'");
+  });
 });
 
 function browserifyError(err) {

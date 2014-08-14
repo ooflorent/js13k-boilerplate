@@ -1,3 +1,10 @@
+# 1.1.0 (unpublished)
+
+- Added npm scripts
+- Added `serve` task
+- Changed `default` to build the project
+
+
 # 1.0.0
 
 - Updated dependencies

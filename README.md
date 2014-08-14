@@ -14,3 +14,4 @@
 * Lint your JavaScript using [ESLint](http://eslint.org/) 
 * Minify assets
 * Compress as a ZIP archive
+* Serve your game during development
