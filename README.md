@@ -3,8 +3,9 @@
 ## Quick start
 
 * Clone the repository
-* Delete `.git` directory
 * Update `package.json` with your informations
+* Delete `.git` directory
+* Delete unneeded files and blocks
 
 ## Features
 
