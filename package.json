@@ -28,8 +28,8 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "scripts": {
-    "build": "gulp build --prod",
-    "dist": "gulp dist",
+    "build": "gulp build",
+    "dist": "gulp dist --prod",
     "start": "gulp watch serve",
     "test": "gulp lint"
   }
