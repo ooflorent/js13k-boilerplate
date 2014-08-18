@@ -1,6 +1,5 @@
 var program = require('commander');
 var browserify = require('browserify');
-var chalk = require('chalk');
 var express = require('express');
 var path = require('path');
 var rimraf = require('rimraf');
@@ -87,8 +86,8 @@ gulp.task('lint', function() {
 
 gulp.task('dist', ['build'], function() {
   if (!prod) {
-    gutil.log(chalk.yellow('WARNING'), chalk.gray('Missing flag --prod'));
-    gutil.log(chalk.yellow('WARNING'), chalk.gray('You should generate production assets to lower the archive size'));
+    gutil.log(gutil.colors.yellow('WARNING'), gutil.colors.gray('Missing flag --prod'));
+    gutil.log(gutil.colors.yellow('WARNING'), gutil.colors.gray('You should generate production assets to lower the archive size'));
   }
 
   return gulp.src('build/*')
@@ -110,11 +109,11 @@ gulp.task('serve', ['build'], function() {
 
   app.use(express.static(htdocs));
   app.listen(3000, function() {
-    gutil.log("Server started on '" + chalk.green('http://localhost:3000') + "'");
+    gutil.log("Server started on '" + gutil.colors.green('http://localhost:3000') + "'");
   });
 });
 
 function browserifyError(err) {
-  gutil.log(chalk.red('ERROR'), chalk.gray(err.message));
+  gutil.log(gutil.colors.red('ERROR'), gutil.colors.gray(err.message));
   this.emit('end');
 }
