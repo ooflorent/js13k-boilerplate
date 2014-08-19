@@ -9,7 +9,7 @@ module.exports = function(seed) {
      * @api public
      */
     int: function(max) {
-      return random() * ((max || 0xfffffff) + 1) | 0;
+      return random() * (max || 0xfffffff) | 0;
     },
     /**
      * Return a float within [0.0, 1.0).
