@@ -4,7 +4,8 @@ var rng = require('./rng');
 var canvas = document.querySelector('#game');
 var ctx = canvas.getContext('2d');
 
-var rand = rng();
+var seed = 1;
+var rand = rng(seed);
 
 var balls = [];
 var colors = [
